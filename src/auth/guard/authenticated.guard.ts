@@ -19,7 +19,7 @@ export class AuthenticatedGuard implements CanActivate {
         return true;
       } else {
         throw new UnauthorizedException('Phiên đăng nhập đã kết thúc');
-        console.log('haha');
+        console.log('hahaa');
       }
     } else {
       // throw new UnauthorizedException(
