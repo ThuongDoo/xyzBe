@@ -1,12 +1,12 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { StockController } from './stock.controller';
 import { StockService } from './stock.service';
-import { EventsGateway } from 'src/events/events.gateway';
-import { BuysellService } from 'src/buysell/buysell.service';
+import { EventsModule } from 'src/events/events.module';
 
 @Module({
+  imports: [forwardRef(() => EventsModule)],
   controllers: [StockController],
-  providers: [StockService, EventsGateway],
-  exports: [EventsGateway],
+  providers: [StockService],
+  exports: [StockService],
 })
 export class StockModule {}

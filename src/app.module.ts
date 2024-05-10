@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './auth/guard/roles.guard';
 import { BuysellModule } from './buysell/buysell.module';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
     StockModule,
     AuthModule,
     BuysellModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { BuysellService } from './buysell.service';
 
 @Controller('buysell')
@@ -6,18 +6,23 @@ export class BuysellController {
   constructor(private buysellService: BuysellService) {}
 
   @Post()
-  updateBuysell() {}
+  updateBuysell(@Body() data: any) {
+    return this.buysellService.updateBuysell(data);
+  }
 
   @Get()
   getBuysell(
     @Query('date') dateFilter: string,
     @Query('ticker') ticker: string,
     @Query('limit') limit: string,
-  ) {}
+  ) {
+    console.log('haha', dateFilter, ticker, limit);
+
+    return this.buysellService.filterBuysell(dateFilter, ticker, limit);
+  }
 
   @Post('/import')
-  importFile(@Body() data) {}
-
-  @Patch()
-  updateMuaMoi() {}
+  importFile(@Body() data) {
+    return this.buysellService.importBuysell(data);
+  }
 }

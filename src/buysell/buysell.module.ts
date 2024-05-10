@@ -1,15 +1,17 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { BuysellController } from './buysell.controller';
 import { BuysellService } from './buysell.service';
-import { EventsGateway } from 'src/events/events.gateway';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Buysell } from './buysell.model';
-import { StockService } from 'src/stock/stock.service';
+import { EventsModule } from 'src/events/events.module';
 
 @Module({
-  imports: [SequelizeModule.forFeature([Buysell])],
+  imports: [
+    SequelizeModule.forFeature([Buysell]),
+    forwardRef(() => EventsModule),
+  ],
   controllers: [BuysellController],
-  providers: [BuysellService, EventsGateway, StockService],
-  exports: [EventsGateway],
+  providers: [BuysellService],
+  exports: [BuysellService],
 })
 export class BuysellModule {}

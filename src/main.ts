@@ -22,6 +22,11 @@ async function bootstrap() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
+  app.enableCors({
+    origin: ['*', 'http://localhost:3001'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
   await app.listen(3000);
 }
 bootstrap();

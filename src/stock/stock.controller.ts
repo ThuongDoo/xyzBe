@@ -20,9 +20,14 @@ export class StockController {
     return this.stockService.getSan();
   }
 
-  @Get('/:stocks')
+  @Get('/getStockByName/:stocks')
   getStocks(@Param('stocks') stocks: string) {
     const stocksArray = stocks.split(',');
     return this.stockService.getStockByName(stocksArray);
+  }
+
+  @Post('/filter')
+  filter(@Body() filterParam: any) {
+    return this.stockService.getFilter(filterParam);
   }
 }
