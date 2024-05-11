@@ -1,6 +1,6 @@
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { EventsGateway } from 'src/events/events.gateway';
-import { Utils } from 'src/utils/utils';
+import { Utils } from 'src/shared/utils/utils';
 
 @Injectable()
 export class StockService {

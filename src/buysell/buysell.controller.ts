@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { BuysellService } from './buysell.service';
-import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
+import { AuthenticatedGuard } from 'src/shared/guard/authenticated.guard';
 
 @Controller('buysell')
 export class BuysellController {

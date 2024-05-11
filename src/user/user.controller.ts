@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
-import { Roles } from 'src/auth/decorator/roles.decorator';
+import { AuthenticatedGuard } from 'src/shared/guard/authenticated.guard';
+import { Roles } from 'src/shared/decorator/roles.decorator';
 import { UserRole } from './user.model';
 
 @Controller('user')

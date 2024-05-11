@@ -48,18 +48,4 @@ export class UserService {
     user.deviceInfo = deviceInfo;
     await user.save();
   }
-
-  async checkDeviceInfo(req: Request) {
-    const userData: any = req.user;
-    const deviceInfo = req.headers['user-agent'];
-
-    const user = await this.userModel.findOne({
-      where: { phone: userData.phone },
-    });
-    if (deviceInfo === user.deviceInfo) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

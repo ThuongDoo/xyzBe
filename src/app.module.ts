@@ -6,10 +6,11 @@ import { UserModule } from './user/user.module';
 import { StockModule } from './stock/stock.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './auth/guard/roles.guard';
+import { RolesGuard } from './shared/guard/roles.guard';
 import { BuysellModule } from './buysell/buysell.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { EventsModule } from './events/events.module';
+import { AuthenticatedGuard } from './shared/guard/authenticated.guard';
 
 @Module({
   imports: [
@@ -37,10 +38,14 @@ import { EventsModule } from './events/events.module';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthenticatedGuard,
+    // },
   ],
 })
 export class AppModule {}

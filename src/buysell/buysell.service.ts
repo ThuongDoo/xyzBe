@@ -2,8 +2,8 @@ import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Buysell } from './buysell.model';
 import { EventsGateway } from 'src/events/events.gateway';
-import { Utils } from 'src/utils/utils';
-import { DELETED_BUYSELL } from 'src/utils/contants';
+import { Utils } from 'src/shared/utils/utils';
+import { DELETED_BUYSELL } from 'src/shared/utils/contants';
 import { isSameDay } from 'date-fns';
 import { Op, OrderItem } from 'sequelize';
 
