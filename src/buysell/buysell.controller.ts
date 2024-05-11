@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { BuysellService } from './buysell.service';
+import { AuthenticatedGuard } from 'src/auth/guard/authenticated.guard';
 
 @Controller('buysell')
 export class BuysellController {
@@ -10,14 +11,13 @@ export class BuysellController {
     return this.buysellService.updateBuysell(data);
   }
 
+  @UseGuards(AuthenticatedGuard)
   @Get()
   getBuysell(
     @Query('date') dateFilter: string,
     @Query('ticker') ticker: string,
     @Query('limit') limit: string,
   ) {
-    console.log('haha', dateFilter, ticker, limit);
-
     return this.buysellService.filterBuysell(dateFilter, ticker, limit);
   }
 
