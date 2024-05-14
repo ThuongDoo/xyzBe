@@ -4,12 +4,15 @@ import * as bcrypt from 'bcryptjs';
 import { Request } from 'express';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
+import { UserRequest } from './userRequest.model';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel(User)
     private userModel: typeof User,
+    @InjectModel(UserRequest)
+    private userRequestModel: typeof UserRequest,
   ) {}
 
   findAll(): Promise<User[]> {
@@ -22,8 +25,11 @@ export class UserService {
 
   async addOne(createUserDto: CreateUserDto): Promise<any> {
     const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(createUserDto.password, salt);
+    const password = '123456';
+    const hashPassword = await bcrypt.hash(password, salt);
     try {
+      console.log('haha', createUserDto);
+
       const user = await this.userModel.create({
         phone: createUserDto.phone,
         name: createUserDto.name,
@@ -31,6 +37,7 @@ export class UserService {
         email: createUserDto.email,
         roles: createUserDto.roles,
       });
+      console.log(user);
 
       return user;
     } catch (error) {
@@ -47,5 +54,15 @@ export class UserService {
     });
     user.deviceInfo = deviceInfo;
     await user.save();
+  }
+
+  async getUserRequest() {
+    return this.userRequestModel.findAll();
+  }
+
+  async getAllUser() {
+    return this.userModel.findAll({
+      attributes: { exclude: ['password'] },
+    });
   }
 }

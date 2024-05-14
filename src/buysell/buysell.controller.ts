@@ -25,4 +25,15 @@ export class BuysellController {
   importFile(@Body() data) {
     return this.buysellService.importBuysell(data);
   }
+
+  //TODO: delete
+  @Get('/md/create')
+  createmd() {
+    return this.buysellService.createmd();
+  }
+
+  @Get('/md/get')
+  getmd() {
+    return this.buysellService.getmd();
+  }
 }

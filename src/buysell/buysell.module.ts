@@ -5,10 +5,11 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Buysell } from './buysell.model';
 import { EventsModule } from 'src/events/events.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { Testmd } from './testMd.model';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([Buysell]),
+    SequelizeModule.forFeature([Buysell, Testmd]),
     forwardRef(() => EventsModule),
     AuthModule,
   ],

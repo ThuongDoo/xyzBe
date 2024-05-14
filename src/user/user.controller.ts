@@ -8,10 +8,20 @@ import { UserRole } from './user.model';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @UseGuards(AuthenticatedGuard)
+  // @UseGuards(AuthenticatedGuard)
+  // @Get()
+  // @Roles(UserRole.ADMIN, UserRole.STOCK1)
+  // findAll() {
+  //   return this.userService.findAll();
+  // }
+
+  @Get('/userRequest')
+  getUserRequest() {
+    return this.userService.getUserRequest();
+  }
+
   @Get()
-  @Roles(UserRole.ADMIN, UserRole.TRIAL)
-  findAll() {
-    return this.userService.findAll();
+  getUser() {
+    return this.userService.getAllUser();
   }
 }

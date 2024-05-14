@@ -6,6 +6,7 @@ import { Utils } from 'src/shared/utils/utils';
 import { DELETED_BUYSELL } from 'src/shared/utils/contants';
 import { isSameDay } from 'date-fns';
 import { Op, OrderItem } from 'sequelize';
+import { Testmd } from './testMd.model';
 
 @Injectable()
 export class BuysellService {
@@ -15,6 +16,9 @@ export class BuysellService {
 
     @Inject(forwardRef(() => EventsGateway))
     private readonly eventsGateway: EventsGateway,
+
+    @InjectModel(Testmd)
+    private testmdModel: typeof Testmd,
   ) {}
 
   buysellData = [];
@@ -328,5 +332,16 @@ export class BuysellService {
     } else {
       this.buysellImported.push(...data);
     }
+  }
+
+  //TODO: delete
+  async createmd() {
+    const md = await this.testmdModel.create({ name: 'haa' });
+    return md;
+  }
+
+  async getmd() {
+    const mds = await this.testmdModel.findAll();
+    return mds;
   }
 }

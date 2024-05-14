@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { StockService } from './stock.service';
+import { AuthenticatedGuard } from 'src/shared/guard/authenticated.guard';
 
 @Controller('stock')
 export class StockController {
@@ -20,6 +21,7 @@ export class StockController {
     return this.stockService.getSan();
   }
 
+  @UseGuards(AuthenticatedGuard)
   @Get('/getStockByName/:stocks')
   getStocks(@Param('stocks') stocks: string) {
     const stocksArray = stocks.split(',');
