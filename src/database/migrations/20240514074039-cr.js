@@ -9,14 +9,8 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.createTable('Testmds', {
-      name: {
-        type: Sequelize.STRING,
-      },
-      pass: {
-        type: Sequelize.STRING,
-        defaultValue: 'huhu',
-      },
+    return queryInterface.addColumn('Testmds', 'email', {
+      type: Sequelize.STRING,
     });
   },
 
